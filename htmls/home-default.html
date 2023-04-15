@@ -1,0 +1,41 @@
+<div class='row content'>
+    <div class='col-6 content-container'>
+        <h2 class='content-header'>Axum Alpine Test</h2>
+        <p class='content-item'>
+            Baptême de tabarnane de cimonaque d'étole de patente à gosse de maudit de cossin de colon de cibouleau de saint-ciboire.
+            Cul de bout d'ciarge de Jésus Marie Joseph de câlique de colon de câline de sacréfice de mosus de batèche d'étole.
+            Saintes fesses d'ostie de sapristi de mosus de boswell de baptême de torrieux de caltor de purée de crucifix.
+            Verrat de viande à chien de calvince de gériboire de cibouleau de calvinouche de bâtard de christie de crucifix de doux Jésus.
+            Saintes fesses de Jésus Marie Joseph de sacristi de ciboire de charogne d'enfant d'chienne de bâtard de cul de mosus de saint-ciboire.
+        </p>
+        <button class='btn-white content-btn'>Proceed &#x2192;</button>
+    </div>
+    <div class='col-4 text-center' x-data="{ login:  true }">
+        <div class='forms'>
+            <div class='row'style='margin-bottom: 30px;'>
+                <div class='col-5 pe-1'><button x-on:click='login = true' x-bind:class='login ? "btn-white options-btn" : "btn-outline-white options-btn"'>Login</button></div>
+                <div class='col-5 ps-1'><button x-on:click='login = false' x-bind:class='!login ? "btn-white options-btn" : "btn-outline-white options-btn"'>Sign Up</button></div>
+            </div>
+            <form x-show='login' class="slidin">
+                <label for='email'>Email:</label><br>
+                <input type='email' id='email' name='email'><br>
+                <label for='password'>Password:</label><br>
+                <input type='password' id='password' name='password'>
+                <button class='options-btn btn-white'>Login</button>
+            </form>
+            <form x-show='!login' class="slidin">
+                <label for='name'>Name:</label><br>
+                <input type='text' id='name' name='name' required><br>
+                <label for='surname'>Surname:</label><br>
+                <input type='text' id='surname' name='surname' required><br>
+                <label for='email'>Email:</label><br>
+                <input type='email' id='email' name='email' required><br>
+                <label for='password'>Password:</label><br>
+                <input type='password' id='password' name='password' required>
+                <label for='repassword'>Renter Password:</label><br>
+                <input type='password' id='repassword' name='repassword' required>
+                <button class='options-btn btn-white'>Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
