@@ -1,4 +1,6 @@
 use std::{fs::File, io::Read};
+
+pub const URL: &str = "http://localhost:3000/";
 pub struct Utils;
 
 impl Utils{
@@ -31,8 +33,30 @@ impl Utils{
     }
 }
 
-pub struct UserDetails{
-    name: String,
-    surname: String,
-    email: String,
-}
+/*async fn serve_image() -> Response<axum::body::Body> {
+    let mut file = File::open("images/quitting.svg").unwrap_or_else(|_| panic!("Could not open image file"));
+
+    let mut buffer = Vec::new();
+    let result = file.read_to_end(&mut buffer);
+
+    match result {
+        Ok(_) => {
+            let response = Response::builder()
+                .status(200)
+                .header("content-type", "image/svg")
+                .header("content-length", buffer.len())
+                .header(
+                    "content-disposition",
+                    "attachment; filename=quitting.svg",
+                )
+                .body(axum::body::Body::from(buffer))
+                .unwrap();
+
+            response
+        }
+        Err(e) => {
+            println!("Failed to read image file: {}", e);
+            Response::builder().status(500).body(axum::body::Body::empty()).unwrap()
+        }
+    }
+}*/

@@ -7,6 +7,13 @@ edition = "2021"
 
 [dependencies]
 axum = "0.6.15"
-serde = "1.0.160"
+serde = {version = "1.0.160", features=["derive"]}
+serde_json = "1.0.96"
 tokio = { version = "1.27", features = ["full"] }
+tower = { version = "0.4.13", features = ["full"] }
 tower-http = { version = "0.4.0",  features = ["full"] }
+pgdb-lib-rs = {version="0.1.2"}
+sqlx = { version = "0.6.3", features = [ "runtime-async-std-native-tls", "postgres", "json" ] }
+tracing = "0.1.37"
+tracing-subscriber = { version="0.3.16", features = ["env-filter"] }
+thiserror = "1.0.40"

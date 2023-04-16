@@ -19,7 +19,7 @@
     color: white;
 }
 
-.nav-item :hover{
+.nav-item:hover{
     color: #f4511e;
 }
 
