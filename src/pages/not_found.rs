@@ -1,6 +1,6 @@
 use axum::response::Html;
 
-use crate::elements::{Element, Header, NotFoundBody};
+use crate::elements::{Element, Header, NotFound};
 use super::Page;
 
 
@@ -12,7 +12,7 @@ impl NotFoundPage {
     fn new()->Self{
         NotFoundPage{ components: vec![
             Box::new(Header::new("")),
-            Box::new(NotFoundBody),
+            Box::new(NotFound),
         ] }
     }
 }

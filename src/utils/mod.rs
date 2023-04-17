@@ -1,6 +1,6 @@
 use std::{fs::File, io::Read};
 
-pub const URL: &str = "http://localhost:3000/";
+pub const URL: &str = "http://localhost:3000";
 pub struct Utils;
 
 impl Utils{

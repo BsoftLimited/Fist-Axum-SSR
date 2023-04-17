@@ -15,22 +15,22 @@ impl Header {
 }
 
 impl Element for Header {
-    fn style(&self)->Option<String> {
-        return Option::Some(Utils::load_style("header.css"));
+    fn style(&self)->String {
+        return Utils::load_style("header.css");
     }
 
     fn layout(&self)->String {
-        if self.user.is_some(){
-            return Utils::load_html("header-user.html")
-            .replace("{home}", if self.active == "home" { "active" }   else { "" })
-            .replace("{about}", if self.active == "about" { "active" }   else { "" })
-            .replace("{url}", URL);
-        }
-        return Utils::load_html("header-default.html")
-            .replace("{home}", if self.active == "home" { "active" }   else { "" })
-            .replace("{about}", if self.active == "about" { "active" }   else { "" })
-            .replace("{url}", URL);
+        return  Utils::load_html("header.html");
     }
 
-    fn script(&self)-> Option<String> { None }
+    fn name(&self)->String { "header".to_owned() }
+
+    fn match_variable(&self, name:  &str)->String {
+        return match name{
+            "home" => (if self.active == "home" { "active" } else { "" }).to_owned(),
+            "about" => (if self.active == "about" { "active" }   else { "" }).to_owned(),
+            "url" =>  URL.to_owned(),
+            __ => name.to_owned()
+        }
+    }
 }

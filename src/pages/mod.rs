@@ -21,15 +21,10 @@ pub trait Page {
         let mut scripts = String::new();
 
         for component in self.components(){
-            layouts.push_str(component.layout().as_str());
-
-            if let Option::Some(script) = component.script() {
-                scripts.push_str(script.as_str());
-            }
-
-            if let Option::Some(style) = component.style() {
-                stlyes.push_str(style.as_str());
-            }
+            let init  = component.html();
+            layouts.push_str(init.layout.as_str());
+            scripts.push_str(init.script.as_str());
+            stlyes.push_str(init.style.as_str());
         }
 
         let global_style = Utils::load_style("style.css");

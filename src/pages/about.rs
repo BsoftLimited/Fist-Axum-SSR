@@ -1,6 +1,6 @@
 use axum::response::Html;
 
-use crate::elements::{Element, Header, AboutBody};
+use crate::elements::{Element, Header, About};
 use super::Page;
 
 
@@ -12,7 +12,7 @@ impl AboutPage {
     fn new()->Self{
         AboutPage{ components: vec![
             Box::new(Header::new("about")),
-            Box::new(AboutBody)
+            Box::new(About)
         ] }
     }
 }

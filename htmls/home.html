@@ -12,8 +12,8 @@
             <a class='btn-white content-btn' href="users">All Users <span style="font-size: larger; font-weight: 700;">&#x2192;</span></a>
         </div>
     </div>
-    <div class='col-4 text-center' x-data="{ login:  true, user: { name:'Nobel', surname: 'Okelekele', email:  } }">
-        <div x-if="user === undefined" class='forms' style="display:none">
+    <div class='col-4 text-center' x-data="{ login:  true, user: $userDetails }">
+        <div x-show="user === undefined" class='forms'>
             <div class='row'style='margin-bottom: 30px;'>
                 <div class='col-5 pe-1'><button x-on:click='login = true' x-bind:class='login ? "btn-white options-btn" : "btn-outline-white options-btn"'>Login</button></div>
                 <div class='col-5 ps-1'><button x-on:click='login = false' x-bind:class='!login ? "btn-white options-btn" : "btn-outline-white options-btn"'>Sign Up</button></div>
@@ -39,7 +39,7 @@
                 <button class='options-btn btn-white'>Submit</button>
             </form>
         </div>
-        <div x-if="user !== undefined" class="forms">
+        <div x-show="user !== undefined" class="forms" style="display: none;">
             <img src="images/profile.png"  width="150px" style="background-color: white; border-radius: 50%;" />
             <table style="margin-top: 20px;">
                 <tr>
