@@ -11,8 +11,6 @@ impl Element for NotFound{
         return Utils::load_html("not-found.html");    
     }
 
-    fn name(&self)->String { "not_found".to_owned() }
-
     fn match_variable(&self, name:  &str)->String {
         return name.to_owned();
     }

@@ -14,6 +14,9 @@ pub use not_found::NotFound;
 mod about;
 pub use about::About;
 
+mod users;
+pub use users::Users;
+
 use crate::models::UserDetails;
 
 pub struct ElementLayout{
@@ -21,17 +24,15 @@ pub struct ElementLayout{
 }
 
 pub trait Element{
-    fn name(&self)->String;
     fn layout(&self)->String;
     fn style(&self)->String{ String::new() }
     fn script(&self)->String { String::new() }
-    fn match_variable(&self, name:  &str)->String;
+    fn match_variable(&self, name:  &str)->String { name.to_owned() }
     fn html(&self)-> ElementLayout{
         let mut layout = self.layout();
         let mut style = self.style();
         let mut script = self.script();
 
-        println!("layout: {}", layout);
 
         for variable in find_variables(layout.as_str()){
             let name = variable.replace("$", "");
@@ -40,7 +41,6 @@ pub trait Element{
 
         let (elements, options) = find_elements(layout.as_str());
         for (raw, element) in elements{
-            println!("element: {}", element);
             if let Some(value) = register(element.clone(), options.get(element.as_str()).unwrap()){
                 let init = value.html();
                 style.push_str(&init.style);
@@ -92,8 +92,6 @@ fn unwrap_string(params: &HashMap<String, String>, key: &str)->String{
 }
 
 fn register(name: String, option: &HashMap<String, String>)->Option<Box<dyn Element>>{
-    println!("i was here");
-    println!("{}", name);
     match name.as_str(){
         "about" => {
             return Some(Box::new(About)); 

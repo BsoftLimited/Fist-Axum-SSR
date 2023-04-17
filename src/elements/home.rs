@@ -19,14 +19,12 @@ impl Element for Home {
 
     fn layout(&self)->String { return Utils::load_html("home.html"); }
 
-    fn name(&self)->String { "home".to_owned() }
-
     fn match_variable(&self, name:  &str)->String {
         return match name{
             "userDetails" => {
                 let mut user = "undefined".to_owned();
-                if let Some(initUser) = &self.user{
-                    user = format!("{{  name: {}, surname: {}, email: {} }}", initUser.name, initUser.surname, initUser.email);
+                if let Some(init_user) = &self.user{
+                    user = format!("{{  name: {}, surname: {}, email: {} }}", init_user.name, init_user.surname, init_user.email);
                 }
                 return user;
             }

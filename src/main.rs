@@ -4,7 +4,7 @@ use tower_http::{services::ServeDir, trace::TraceLayer};
 use tower::{BoxError, ServiceBuilder};
 
 mod pages;
-use crate::{pages::{home_renderer, about_renderer, not_found_renderer}, models::{user_details, user_create}};
+use crate::{models::{user_details, user_create}, pages::{home_page, about_page, users_page, not_found_page}};
 
 mod config;
 mod elements;
@@ -28,8 +28,9 @@ async fn main() {
     // compose the routes
     let app = Router::new()
         .route("/api/user", get(user_details).post(user_create))
-        .route("/", get(home_renderer))
-        .route("/about", get(about_renderer))
+        .route("/", get(home_page))
+        .route("/about", get(about_page))
+        .route("/users", get(users_page))
         .nest_service("/images", ServeDir::new("images"))
         // Add middleware to all routes
         .layer(
@@ -50,7 +51,7 @@ async fn main() {
     );
  
     // add a fallback service for handling routes to unknown paths
-    let app = app.fallback(not_found_renderer);
+    let app = app.fallback(not_found_page);
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
     println!("Listening on http://{}", addr);
