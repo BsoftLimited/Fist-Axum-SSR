@@ -10,6 +10,7 @@ td{
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 1.4;
+    text-align: left;
 }
 
 .content{
@@ -96,19 +97,4 @@ form > input:active{
 
 .content-image{
     width: 620px;
-}
-
-@keyframes slid{
-    0% { 
-        transform: translateY(-25px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-
-.slidin{
-    animation: slid 500ms ease-out;
 }

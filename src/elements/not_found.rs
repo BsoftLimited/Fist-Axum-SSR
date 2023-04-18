@@ -10,8 +10,4 @@ impl Element for NotFound{
     fn layout(&self)->String {
         return Utils::load_html("not-found.html");    
     }
-
-    fn match_variable(&self, name:  &str)->String {
-        return name.to_owned();
-    }
 }

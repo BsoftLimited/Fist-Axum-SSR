@@ -17,6 +17,10 @@ impl Element for Home {
         return Utils::load_style("home.css");
     }
 
+    fn script(&self)->String {
+        return Utils::load_script("home.js");
+    }
+
     fn layout(&self)->String { return Utils::load_html("home.html"); }
 
     fn match_variable(&self, name:  &str)->String {
@@ -28,7 +32,7 @@ impl Element for Home {
                 }
                 return user;
             }
-            __ => name.to_owned()
+            __ => format!("${}", name)
         }
     }
 }

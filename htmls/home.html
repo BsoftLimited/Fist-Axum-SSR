@@ -13,8 +13,8 @@
             <a class='btn-white content-btn' href="users">All Users <span style="font-size: larger; font-weight: 700;">&#x2192;</span></a>
         </div>
     </div>
-    <div class='col-4 text-center' x-data="{ login:  true, user: $userDetails }">
-        <div x-show="user === undefined" class='forms'>
+    <div class='col-4 text-center' x-data="{ login: true, name: '', surname: '', email: '', password: '', repassword }">
+        <div x-show="!$store.user.value && !$store.user.loading" class='forms'>
             <div class='row'style='margin-bottom: 30px;'>
                 <div class='col-5 pe-1'><button x-on:click='login = true' x-bind:class='login ? "btn-white options-btn" : "btn-outline-white options-btn"'>Login</button></div>
                 <div class='col-5 ps-1'><button x-on:click='login = false' x-bind:class='!login ? "btn-white options-btn" : "btn-outline-white options-btn"'>Sign Up</button></div>
@@ -24,41 +24,42 @@
                 <input type='email' id='email' name='email'><br>
                 <label for='password'>Password:</label><br>
                 <input type='password' id='password' name='password'>
-                <button class='options-btn btn-white'>Login</button>
+                <button id="loginBtn" x-on:click="$store.user.login();" type="button" class='options-btn btn-white'>Login</button>
             </form>
             <form x-show='!login' class="slidin" style="display:none">
                 <label for='name'>Name:</label><br>
-                <input type='text' id='name' name='name' required><br>
+                <input x-model="name" type='text' id='name' name='name' required><br>
                 <label for='surname'>Surname:</label><br>
-                <input type='text' id='surname' name='surname' required><br>
+                <input x-model="surname" type='text' id='surname' name='surname' required><br>
                 <label for='email'>Email:</label><br>
-                <input type='email' id='email' name='email' required><br>
+                <input x-model="email" type='email' id='email' name='email' required><br>
                 <label for='password'>Password:</label><br>
-                <input type='password' id='password' name='password' required>
+                <input x-model="password" type='password' id='password' name='password' required>
                 <label for='repassword'>Renter Password:</label><br>
-                <input type='password' id='repassword' name='repassword' required>
-                <button class='options-btn btn-white'>Submit</button>
+                <input x-model="repassword" type='password' id='repassword' name='repassword' required>
+                <button x-on:click="$store.user.signup(name, surname, email, password, repassword)" type="button" class='options-btn btn-white'>Submit</button>
             </form>
         </div>
-        <div x-show="user !== undefined" class="forms" style="display: none;">
+        <div x-show="$store.user.value && !$store.user.loading" class="forms" style="display: none;">
             <img src="images/profile.png"  width="150px" style="background-color: white; border-radius: 50%;" />
             <table style="margin-top: 20px;">
                 <tr>
                     <td>Name</td>
-                    <td x-text="user.name"></td>
+                    <td x-text="$store.user.value?.name"></td>
                 </tr>
                 <tr>
                     <td>Surname</td>
-                    <td x-text="user.surname"></td>
+                    <td x-text="$store.user.value?.surname"></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td x-text="user.email"></td>
+                    <td x-text="$store.user.value?.email"></td>
                 </tr>
             </table>
             <div style="margin-top: 20px; display: flex; width: 100%;  justify-content: right;">
-                <button style="width: 120px;" class="btn-white options-btn">Logout</button>
+                <button style="width: 120px;" x-on:click="$store.user.logout();" class="btn-white options-btn">Logout</button>
             </div>
         </div>
+        <div x-show="$store.user.loading" class="forms" style="display: none;">{loading}</div>
     </div>
 </div>

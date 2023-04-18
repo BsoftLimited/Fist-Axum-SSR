@@ -9,4 +9,7 @@ impl Element for Users {
     fn style(&self)->String {
         return Utils::load_style("users.css");
     }
+    fn script(&self)->String {
+        return Utils::load_script("users.js");
+    }
 }

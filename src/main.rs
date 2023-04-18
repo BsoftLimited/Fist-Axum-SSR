@@ -4,7 +4,7 @@ use tower_http::{services::ServeDir, trace::TraceLayer};
 use tower::{BoxError, ServiceBuilder};
 
 mod pages;
-use crate::{models::{user_details, user_create}, pages::{home_page, about_page, users_page, not_found_page}};
+use crate::{pages::{home_page, about_page, users_page, not_found_page}, models::{init_user, create_user, all_user}};
 
 mod config;
 mod elements;
@@ -27,7 +27,8 @@ mod models;
 async fn main() {
     // compose the routes
     let app = Router::new()
-        .route("/api/user", get(user_details).post(user_create))
+        .route("/api/user", get(init_user).post(create_user))
+        .route("/api/user/all", get(all_user))
         .route("/", get(home_page))
         .route("/about", get(about_page))
         .route("/users", get(users_page))
@@ -47,8 +48,7 @@ async fn main() {
                 }))
                 .timeout(Duration::from_secs(10))
                 .layer(TraceLayer::new_for_http())
-                .into_inner()
-    );
+                .into_inner());
  
     // add a fallback service for handling routes to unknown paths
     let app = app.fallback(not_found_page);

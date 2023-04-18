@@ -1,6 +1,7 @@
-use axum::{response::{IntoResponse, Response}, extract::{Query, State}, http::StatusCode};
+use axum::{response::{IntoResponse, Response}, http::StatusCode, Json};
 use pgdb_lib_rs::Database;
 use serde::{Deserialize, Serialize};
+
 #[derive(Deserialize, Debug, Clone)]
 pub struct CreateUserRequest {
     pub name: String,
@@ -23,6 +24,7 @@ impl IntoResponse for CreateUserResponse {
     }
 }
 
+#[derive(Serialize, Debug, Clone)]
 pub struct UserDetails{
     pub name: String,
     pub surname: String,
@@ -43,16 +45,23 @@ impl User {
     }
 }
 
-pub async fn user_create( request: Option<Query<CreateUserRequest>>) -> impl IntoResponse {
-
-    //let Query(paginat) = request.unwrap_or_default();
-
-    CreateUserResponse{ id: 1, name: String::from("Nobel"), surname: "Okelekele".to_owned(), email: "okelekelenobel@gmail.com".to_owned() }
+pub async fn create_user(Json(payload): Json<CreateUserRequest>) -> (StatusCode, Json<UserDetails>) {
+    let details = UserDetails{ name: payload.name, surname: payload.surname, email: payload.email };
+    return (StatusCode::CREATED, Json(details));
 }
 
-pub async fn user_details( request: Option<Query<CreateUserRequest>>) -> impl IntoResponse {
+pub async fn init_user() -> (StatusCode, Json<UserDetails>) {
+    let details = UserDetails{ name: String::from("Nobel"), surname: "Okelekele".to_owned(), email: "okelekelenobel@gmail.com".to_owned() };
+    return (StatusCode::OK, Json(details));
+}
 
-    //let Query(paginat) = request.unwrap_or_default();
-
-    CreateUserResponse{ id: 1, name: String::from("Nobel"), surname: "Okelekele".to_owned(), email: "okelekelenobel@gmail.com".to_owned() }
+pub async fn all_user() -> (StatusCode, Json<Vec<UserDetails>>) {
+    let users = vec![
+        UserDetails{ name: String::from("Nobel"), surname: "Okelekele".to_owned(), email: "okelekelenobel@gmail.com".to_owned() },
+        UserDetails{ name: String::from("Benita"), surname: "Okelekele".to_owned(), email: "benitaokelekele@gmail.com".to_owned() },
+        UserDetails{ name: String::from("Victoria"), surname: "Okelekele".to_owned(), email: "victoriaokelekele@gmail.com".to_owned() },
+        UserDetails{ name: String::from("Kiensue"), surname: "Okelekele".to_owned(), email: "okelekelekiensue@yahoo.com".to_owned() },
+        UserDetails{ name: String::from("Ifeafa"), surname: "Okelekele".to_owned(), email: "ifeafaokelekele@gmail.com".to_owned() }
+    ];
+    return (StatusCode::OK, Json(users));
 }

@@ -17,6 +17,9 @@ pub use about::About;
 mod users;
 pub use users::Users;
 
+mod loading;
+pub use loading::Loading;
+
 use crate::models::UserDetails;
 
 pub struct ElementLayout{
@@ -27,7 +30,7 @@ pub trait Element{
     fn layout(&self)->String;
     fn style(&self)->String{ String::new() }
     fn script(&self)->String { String::new() }
-    fn match_variable(&self, name:  &str)->String { name.to_owned() }
+    fn match_variable(&self, name:  &str)->String { format!("${}", name) }
     fn html(&self)-> ElementLayout{
         let mut layout = self.layout();
         let mut style = self.style();
@@ -108,8 +111,11 @@ fn register(name: String, option: &HashMap<String, String>)->Option<Box<dyn Elem
             if !name.is_empty() && !surname.is_empty() && !email.is_empty(){
                 user = Some(UserDetails { name, surname, email });
             }
-            return  Some(Box::new(Home::new(user)));
+            return Some(Box::new(Home::new(user)));
         },
+        "loading" =>{
+            return Some(Box::new(Loading));
+        }
         __ => None
     }
 }

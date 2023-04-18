@@ -49,6 +49,7 @@
         border: solid 2px white;
         color: white;
         background-color: transparent;
+        cursor: pointer;
     }
 
     .btn-outline-white:hover{
@@ -60,6 +61,7 @@
         background-color: white;
         border: solid 2px white;
         color: gray;
+        cursor: pointer;
     }
 
     .btn-white:hover{
@@ -109,4 +111,19 @@
 
     .w-100{
         width: 100%;
+    }
+
+    @keyframes slid{
+        0% { 
+            transform: translateY(-25px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+    
+    .slidin{
+        animation: slid 500ms ease-out;
     }

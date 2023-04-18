@@ -1,1 +1,38 @@
 {header(active:'users')}
+<div class="content" style="margin-left: 40px; margin-right: 40px;">
+    <h1 class="content-header">All Users</h1>
+    <div class="row">
+        <div class="col-6">
+            <div>
+                <p class="content-item slidin">Enfant d'chienne de cossin de bâtard de charogne de verrat de sacristi d'esprit de saintes fesses de patente à gosse d'étole.
+            Mosus de Jésus de plâtre de torvisse de purée de viande à chien d'astie de gériboire de mautadine de cibouleau de saint-cimonaque.
+            Colon de saint-ciboire de ciarge de charogne de ciboire de géritole d'étole de bout d'ciarge d'enfant d'chienne de viarge.
+            Étole de sacréfice d'esprit de Jésus Marie Joseph d'enfant d'chienne de saint-ciboire de colon de verrat de bâtard de cibole.
+                </p>
+                <div class="text-center slidin" style="display: flex; width: 100%;" x-data>
+                    <div x-show="$store.users.loading" class="forms">{loading}</div>
+                    <div x-show="!$store.users.loading" class="forms" style="padding: 8px; display: none; width: 900px; margin-top: 20px;">
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Surname</th>
+                                <th>Emails</th>
+                            </tr>
+                            <template x-for="user in $store.users.value">
+                                <tr>
+                                    <td><label x-text="user.name"></label></td>
+                                    <td><label x-text="user.surname"></label></td>
+                                    <td><label x-text="user.email"></label></td>
+                                </tr>
+                            </template>
+                        </table>
+                    </div>
+                    <div x-effect="$store.users.init()"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6" style="text-align: center;">
+            <img class="slidin" src="images/connected.svg" style="width: 80%;"/>
+        </div>
+    </div>
+</div>
