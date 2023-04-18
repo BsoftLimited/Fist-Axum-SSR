@@ -26,7 +26,7 @@ impl Element for Header {
             "users" => (if self.active == "users" { "active" }   else { "" }).to_owned(),
             "about" => (if self.active == "about" { "active" }   else { "" }).to_owned(),
             "url" =>  URL.to_owned(),
-            __ => name.to_owned()
+            __ => format!("${}", name)
         }
     }
 }

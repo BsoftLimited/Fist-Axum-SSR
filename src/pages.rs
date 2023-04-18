@@ -6,14 +6,15 @@ fn page(title: &str, element: impl Element )->Html<String>{
     let global_style = Utils::load_style("style.css");
     let component = element.html();
     let init = format!(
-        r#"<html>
+        r#"<!DOCTYPE html>
+        <html>
             <head>
                 <title>{}</title>
                 <script src='https://unpkg.com/alpinejs' defer></script>
                 <style>{}{}</style>
             </head>
             <body>{}
-                <scrip>{}</script>
+                <script>{}</script>
             </body>
         </html>"#, title, global_style, component.style.as_str(), component.layout.as_str(), component.script.as_str(), 
     );
