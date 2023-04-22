@@ -1,40 +1,39 @@
+use tera::Tera;
+use tera::Context;
 use axum::response::Html;
 
-use crate::{elements::{Element, About, Home, NotFound, Users}, utils::Utils};
-
-fn page(title: &str, element: impl Element )->Html<String>{
-    let global_style = Utils::load_style("style.css");
-    let component = element.html();
-    let init = format!(
-        r#"<!DOCTYPE html>
-        <html>
-            <head>
-                <title>{}</title>
-                <script src='https://unpkg.com/alpinejs' defer></script>
-                <style>{}{}</style>
-            </head>
-            <body>{}
-                <script>{}</script>
-            </body>
-        </html>"#, title, global_style, component.style.as_str(), component.layout.as_str(), component.script.as_str(), 
-    );
-
-    return Html(init);
+lazy_static::lazy_static! {
+    pub static ref TEMPLATES: Tera = {
+        let mut tera = match Tera::new("templates/**/*") {
+            Ok(t) => t,
+            Err(e) => {
+                println!("Parsing error(s): {}", e);
+                ::std::process::exit(1);
+            }
+        };
+        tera.autoescape_on(vec![".html", ".sql"]);
+        //tera.register_filter("do_nothing", do_nothing_filter);
+        tera
+    };
 }
 
 
 pub async fn home_page() -> Html<String> {
-    return page("Axum Test | Home", Home::new(None));
+    let page = &TEMPLATES.render("home.html", &Context::new()).unwrap();
+    return Html(page.to_owned());
 }
 
 pub async fn about_page() -> Html<String> {
-    return page("Axum Test | About", About);
+    let page = &TEMPLATES.render("about.html", &Context::new()).unwrap();
+    return Html(page.to_owned());
 }
 
 pub async fn not_found_page() -> Html<String> {
-    return page("Axum Test | Not Found", NotFound);
+    let page = &TEMPLATES.render("not-found.html", &Context::new()).unwrap();
+    return Html(page.to_owned());
 }
 
 pub async fn users_page() -> Html<String> {
-    return page("Axum Test | All Users", Users);
+    let page = &TEMPLATES.render("users.html", &Context::new()).unwrap();
+    return Html(page.to_owned());
 }

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Axum Alpine Test | About{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link  rel="stylesheet" href="/assets/css/header.css" />
+    <link  rel="stylesheet" href="/assets/css/about.css" />
+{% endblock %}
+
+{% block header %}
+    <div  class='nav'>
+        <div class='nav-brand'>Axum Alpine</div>
+        <a class='nav-item' href="/">Home</a>
+        <a class='nav-item' href="/users">Users</a>
+        <a class='nav-item active' href="/about">About</a>
+    </div>
+{% endblock %}

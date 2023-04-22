@@ -7,7 +7,6 @@ mod pages;
 use crate::{pages::{home_page, about_page, users_page, not_found_page}, models::{init_user, create_user, all_user}};
 
 mod config;
-mod elements;
 mod utils;
 mod models;
 
@@ -29,10 +28,12 @@ async fn main() {
     let app = Router::new()
         .route("/api/user", get(init_user).post(create_user))
         .route("/api/user/all", get(all_user))
+
         .route("/", get(home_page))
         .route("/about", get(about_page))
         .route("/users", get(users_page))
-        .nest_service("/images", ServeDir::new("images"))
+
+        .nest_service("/assets", ServeDir::new("assets"))
         // Add middleware to all routes
         .layer(
             ServiceBuilder::new()

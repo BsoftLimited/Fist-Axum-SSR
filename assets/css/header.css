@@ -1,0 +1,41 @@
+.nav{
+    padding: 12px;
+    padding-left: 30px;
+    color: white;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+}
+
+.nav-item {
+    display: inline;
+    border-radius: 8px;
+    padding: 8px;
+    margin-right: 8px;
+    margin-left: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-item:hover{
+    color: #f4511e;
+}
+
+.nav-brand{
+    display: inline;
+    color:  white;
+    font-weight: 800;
+    font-size: 1.5em;
+    padding-right: 20px;
+}
+
+.nav-options{
+    display: inline;
+}
+
+.active {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}

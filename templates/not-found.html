@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Axum Alpine Test | Not Found{% endblock %}
+
+{% block styles %}
+    {{ super() }}
+    <link  rel="stylesheet" href="/assets/css/header.css" />
+{% endblock %}
+
+{% block header %}
+    <div  class='nav'>
+        <div class='nav-brand'>Axum Alpine</div>
+        <a class='nav-item active' href="/">Home</a>
+        <a class='nav-item' href="/users">Users</a>
+        <a class='nav-item' href="/about">About</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+	<div style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);">
+		<img src="/assets/images/not_found.png"  width="500px"/>
+	</div>
+{% endblock %}
