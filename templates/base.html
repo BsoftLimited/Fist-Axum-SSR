@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Title{% endblock %}</title>
+    <script src='/assets/js/alpine.js' defer></script>
+ 
+    {% block styles %}
+        <link rel="stylesheet" href="assets/css/style.css" />
+    {% endblock %}
+</head>
+<body>
+    <header>
+        {% block header %}{% endblock %}
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% block script %}{% endblock %}
+</body>
+</html>

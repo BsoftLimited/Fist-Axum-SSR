@@ -1,0 +1,129 @@
+*,
+    *::before,
+    *::after { 
+        margin: 0; 
+        padding: 0; 
+        box-sizing: border-box; 
+    }
+
+    body{
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    a{ text-decoration:none;  }
+    .logo { color: #f4511e; }
+    .logo-small { color: #f4511e; width:50px; height:50px; margin:auto; }
+
+    .bg-grey { background-color: #f6f6f6a2; }
+    .bg-blue{ background-color: #6c63ff; }
+    .text-blue{ color: #6c63ff; }
+    .bg-orange{ background-color: #f4511e; }
+    .text-orange{ color: #f4511e; }
+    .bg-grey { background-color: #f6f6f6af; }
+    .border-blue{ border-color: #6c63ff; }
+    .border-orange{ border-color: #f4511e; }
+    .btn-outline-blue{
+        border: solid 2px #6c63ff;
+        color: #6c63ff;
+        background-color: transparent;
+    }
+
+    .btn-outline-blue:hover{
+        color: white;
+        background-color: #6c63ff;
+    }
+
+    .btn-blue{
+        background-color: #6c63ff;
+        border-color: #6c63ff;
+        color: white;
+    }
+
+    .btn-blue:hover{
+        background-color: #554ed4;
+        border-color: #554ed4;
+    }
+
+    .btn-outline-white{
+        border: solid 2px white;
+        color: white;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .btn-outline-white:hover{
+        color: gray;
+        background-color: white;
+    }
+
+    .btn-white{
+        background-color: white;
+        border: solid 2px white;
+        color: gray;
+        cursor: pointer;
+    }
+
+    .btn-white:hover{
+        background-color: whitesmoke;
+        border: solid 2px whitesmoke;
+    }
+    .text-center{
+        text-align: center;
+    }
+
+    .row{
+        display: flex;
+    }
+    
+    .row > *{
+        display: inline-block;
+        justify-content: center;
+    }
+    
+    .row >.col-1{ width: 10%; }
+    .row > .col-2{ width: 20%; }
+    .row > .col-3{ width: 30%; }
+    .row > .col-4{ width: 40%; }
+    .row > .col-5{ width: 50% }
+    .row > .col-6{ width: 60%; }
+    .row > .col-7{ width: 70%; }
+    .row > .col-8{ width: 80%; }
+    .row > .col-9{ width: 90%; }
+    .row > .col-10{ width: 100%; }
+
+    .p-1{
+        padding: 10px;
+    }
+
+    .px-1{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .pe-1{
+        padding-right: 10px;
+    }
+
+    .ps-1{
+        padding-left: 10px;
+    }
+
+    .w-100{
+        width: 100%;
+    }
+
+    @keyframes slid{
+        0% { 
+            transform: translateY(-25px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+    
+    .slidin{
+        animation: slid 500ms ease-out;
+    }

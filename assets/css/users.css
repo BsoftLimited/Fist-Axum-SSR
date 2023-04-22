@@ -1,0 +1,57 @@
+body{
+    background-image: url("assets/images/users.png");
+}
+
+.forms{
+    max-width: 700px;
+    min-width: 340px;
+    padding: 30px;
+    background-color: rgba( 255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    border: solid 0px white;
+    box-shadow: 3px;
+}
+
+.content{
+    margin-top: 80px;
+}
+
+.content-header{
+    letter-spacing: 1.2;
+    font-size: 2.2em;
+    color: whitesmoke;
+    font-weight: 800;
+    margin: 10px;
+}
+
+.content-item{
+    font-size: 18px;
+    color: whitesmoke;
+    letter-spacing: 1.2;
+    font-weight: 400;
+    margin: 10px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    color: white;
+    letter-spacing: 1.4;
+    text-align: left;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  label{
+    letter-spacing: 1.6;
+  }
+  
+  tr:nth-child(even) {
+    background-color: transparent;
+    color: white;
+  }
