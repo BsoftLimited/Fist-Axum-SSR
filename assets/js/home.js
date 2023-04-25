@@ -3,10 +3,12 @@ document.addEventListener("alpine:init", ()=>{
         "user", {
             loading: false,
             value: undefined,
-            login(){
-                this.value = true;
-                fetch("/api/user").then(response => response.json()).then(data =>{
-                    this.value = false;
+            login(email, password){
+                this.loading = true;
+                const details = { email: email, password: password };
+                    const options = { method: 'POST', headers: { 'Content-Type': 'application/json', }, body: JSON.stringify(details), };
+                fetch("/api/user/login", options).then(response => response.json()).then(data =>{
+                    this.loading = false;
                     console.log(data);
                     this.value = data;
                 });
@@ -26,11 +28,11 @@ document.addEventListener("alpine:init", ()=>{
                 }else if(password !== repassword){
                     alert("Passowrd Mismatch");
                 }else{
-                    this.value = true;
+                    this.loading = true;
                     const details = { name: name,  surname: surname, email: email, password: password };
                     const options = { method: 'POST', headers: { 'Content-Type': 'application/json', }, body: JSON.stringify(details), };
-                    fetch('/api/user/create', options).then(response => response.json()).then(data =>{
-                        this.value = false;
+                    fetch('/api/user', options).then(response => response.json()).then(data =>{
+                        this.loading = false;
                         console.log(data);
                         this.value = data;
                     });

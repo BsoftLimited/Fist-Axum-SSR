@@ -1,6 +1,10 @@
 use tera::Tera;
 use tera::Context;
 use axum::response::Html;
+use tower_cookies::Cookies;
+
+use crate::api::config::Database;
+use crate::api::items::User;
 
 lazy_static::lazy_static! {
     pub static ref TEMPLATES: Tera = {
@@ -12,14 +16,29 @@ lazy_static::lazy_static! {
             }
         };
         tera.autoescape_on(vec![".html", ".sql"]);
-        //tera.register_filter("do_nothing", do_nothing_filter);
         tera
     };
 }
 
 
-pub async fn home_page() -> Html<String> {
+pub async fn home_page(cookies: Cookies) -> Html<String> {
+    let cookie = cookies.get("axum");
+    if cookie.is_some(){
+        let id = cookie.unwrap().value().to_owned();
+           
+        let db_result = Database::new().await;
+        if !db_result.is_error(){
+            let pool = db_result.unwrap();
+    
+            let details_result = User::get(pool, id.as_str()).await;
+            if !details_result.is_error(){
+                
+            }   
+        }
+    }
+
     let page = &TEMPLATES.render("home.html", &Context::new()).unwrap();
+
     return Html(page.to_owned());
 }
 

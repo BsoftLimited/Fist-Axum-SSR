@@ -33,7 +33,7 @@
                 <a class='btn-white content-btn' href="/users">All Users <span style="font-size: larger; font-weight: 700;">&#x2192;</span></a>
             </div>
         </div>
-        <div class='col-4 text-center' x-data="{ login: true, name: '', surname: '', email: '', password: '', repassword }">
+        <div class='col-4 text-center' x-data="{ login: true, name: '', surname: '', email: '', password: '', repassword, loginEmail: '', loginPassowrd:'' }">
             <div x-show="!$store.user.value && !$store.user.loading" class='forms'>
                 <div class='row'style='margin-bottom: 30px;'>
                     <div class='col-5 pe-1'><button x-on:click='login = true' x-bind:class='login ? "btn-white options-btn" : "btn-outline-white options-btn"'>Login</button></div>
@@ -41,10 +41,10 @@
                 </div>
                 <form x-show='login' class="slidin">
                     <label for='email'>Email:</label><br>
-                    <input type='email' id='email' name='email'><br>
+                    <input x-model="loginEmail" type='email' id='loginEmail' name='email'><br>
                     <label for='password'>Password:</label><br>
-                    <input type='password' id='password' name='password'>
-                    <button id="loginBtn" x-on:click="$store.user.login();" type="button" class='options-btn btn-white'>Login</button>
+                    <input x-model="loginPassowrd" type='password' id='loginPassowrd' name='password'>
+                    <button id="loginBtn" x-on:click="$store.user.login(loginEmail, loginPassowrd);" type="button" class='options-btn btn-white'>Login</button>
                 </form>
                 <form x-show='!login' class="slidin" style="display:none">
                     <label for='name'>Name:</label><br>
